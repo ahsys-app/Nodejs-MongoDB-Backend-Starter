@@ -2,15 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const passportRef = require('./utils/passport');
 
 //logger
 const logger = require('./utils/logger');
 
-//get routes
-const routes = require('./routes/index');
-
 //Mongo DB config
 require('./config/database');
+
+//JWT Strategy
+passportRef.initialize();
+
+//get routes
+const routes = require('./routes/index');
 
 //middleware and static files
 app.use(express.static('public'))

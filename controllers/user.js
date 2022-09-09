@@ -1,7 +1,6 @@
 const httpStatus = require("http-status");
 const userModel = require('../models/user');
 const logger = require('../utils/logger');
-const Joi = require('joi');
 
 const getAllUsers = async(req, res) => {
     try{
@@ -41,6 +40,6 @@ const addUser = async ( req, res ) => {
 
 module.exports = {
     getAllUsers,
-    addUser,
     getUserById,
+    addUser,
 }
