@@ -10,7 +10,7 @@ const userController = require('../controllers/user');
 
 const router = express.Router();
 
-router.get('/', userController.getAllUsers);
+router.get('/', passportRef.authenticate, userController.getAllUsers);
 router.get('/:userId', userController.getUserById);
 router.post('/add', validate(addUserSchema), userController.addUser);
 

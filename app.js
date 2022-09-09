@@ -11,7 +11,7 @@ const logger = require('./utils/logger');
 require('./config/database');
 
 //JWT Strategy
-passportRef.initialize();
+app.use(passportRef.initialize());
 
 //get routes
 const routes = require('./routes/index');

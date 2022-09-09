@@ -32,5 +32,5 @@ passport.use(
 
 module.exports = {
     initialize: () => passport.initialize(),
-    authenticate: passport.authenticate(Keys.jwt, { failureMessage: true }),
+    authenticate: passport.authenticate(Keys.jwt, { session: false, }),
 };
