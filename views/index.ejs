@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head><title>Hello world</title></head>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-    let socket = io();
-    socket.on('newClientConnect',function(data){
-        document.body.innerHTML = '';
-        document.write(data.description);
-    });
+<head>
+    <title>Nodejs Socket.io</title>
+</head>
+<body>
+    <div id="content">Hello world</div>
 
-    console.log(socket)
+    <p></p>
+    <div id="chat">chat will appear here</div>
 
-</script>
-<body>Hello world</body>
+    <form id="form">
+        <input id="text">
+        <button>Submit</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+
+        socket.on('private', function ( msg ) {
+            console.log(msg);
+        });
+
+        socket.on('newClientConnect', function( data ) {
+            console.log(data)
+            document.getElementById('content').innerHTML = data.description;
+        });
+
+        const form = document.getElementById('form')
+        const input = document.getElementById('text')
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            if( input.value ){
+                socket.emit("newMessage", input.value)
+                input.value = ''
+            }
+        })
+
+        const chat = document.getElementById('chat')
+
+        socket.on('incomingMessage', data => {
+            console.log( data )
+            let li = document.createElement('li')
+            li.textContent = data.message
+            chat.appendChild(li)
+        })
+
+        console.log(socket)
+
+    </script>
+</body>
 </html>
