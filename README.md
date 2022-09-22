@@ -16,7 +16,6 @@ For the Developers Who want to start building Nodejs and MongoDB backend ASAP. t
 * Make sure you install **nodemon** globally `npm install -g nodemon`.
 * Recommended node js 14.x (suggestion v14.9.0) and npm 6+. (suggestion v6.14.8).
 * Install dependencies: npm install.
-* Start the project: npm run start.
 
 ```
 npm run serve
